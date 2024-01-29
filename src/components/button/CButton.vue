@@ -2,7 +2,7 @@
   <div>
     <button
       :class="[bgColor, textColor, borderColor, borderRadius]"
-      class="font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex items-center gap-1"
+      class="font-bold py-2 px-4 focus:outline-none focus:shadow-outline flex items-center justify-center gap-1 w-full "
     >
       <slot></slot>
     </button>
