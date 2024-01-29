@@ -1,6 +1,6 @@
 <template>
   <input
-    class=""
+    class="text-black rounded-md px-2 py-1 w-full bg-[#E0E7FF33] border-[#E0E7FF] placeholder:text-[#79849c] border-solid border focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
     :value="modelValue"
     @input="updateModelValue"
     :type="type"
