@@ -1,10 +1,9 @@
 /* eslint-disable no-debugger */
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { login } from '@/service/user.service'
 
 export const useUserStore = defineStore('user', () => {
-  let user = reactive({})
   const loading = ref(false)
 
   const userLogin = async (userCredentials) => {
@@ -12,11 +11,14 @@ export const useUserStore = defineStore('user', () => {
     try {
       loading.value = true
 
-      const { data } = await login(userCredential)
-      user = data
-      localStorage.setItem('user', JSON.stringify(user))
+      const data = await login(userCredential)
+
+      localStorage.setItem('refresh_token', data.refresh)
+      localStorage.setItem('access_token', data.access)
+
       return data
     } catch (e) {
+      
       console.log(e)
       return e
     } finally {
@@ -24,5 +26,5 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  return { user, userLogin }
+  return { userLogin }
 })

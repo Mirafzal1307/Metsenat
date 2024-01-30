@@ -32,11 +32,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // const userStore = useUserStore()
+ 
   const publicPages = ['/login']
   const authRequired = !publicPages.includes(to.path)
-  const loggedIn = localStorage.getItem('user')
-  // const { user } = userStore
+  const loggedIn = localStorage.getItem('access_token')
+  
 
   if (authRequired && !loggedIn)
     return next('/login')
@@ -44,16 +44,9 @@ router.beforeEach((to, from, next) => {
   if (to.name === 'login' && loggedIn)
     return next(from.fullPath)
 
-  // if (user) {
-  //   if (user.role.name === 'Security' && to.name === 'applications-security')
-  //     return next()
-
-  //   if (to.name === 'users-profile')
-  //     return next()
-
-  //   if (user.role.name !== 'Admin' && to.name !== 'index')
-  //     return next('/')
-  // }
+  if (loggedIn) {
+     next('/application')
+  }
 
   return next()
 })
