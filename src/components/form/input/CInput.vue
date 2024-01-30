@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import { defineProps, ref } from 'vue'
+import {  ref } from 'vue'
 
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
@@ -44,7 +44,6 @@ const emit = defineEmits()
 
 const updateModelValue = (event) => {
   if (typeof props.modelValue === 'string') {
-    console.log(props.modelValue)
     const refModelValue = ref(props.modelValue)
     emit('update:modelValue', refModelValue.value)
   }

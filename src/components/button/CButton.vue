@@ -19,12 +19,12 @@ const props = defineProps({
   bgColor: {
     type: String,
     default: 'bg-primary',
-    required: true
+
   },
   textColor: {
     type: String,
     default: 'text-white',
-    required: true
+
   },
 
   borderRadius: {

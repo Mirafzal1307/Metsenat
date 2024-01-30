@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { ref } from 'vue'
 import { onClickOutside } from '@vueuse/core'
 
 // eslint-disable-next-line no-unused-vars
