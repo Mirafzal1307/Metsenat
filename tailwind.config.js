@@ -9,6 +9,9 @@ export default {
         secondary: '#F1F1F3', // gray
         primaryLight: '#EDF1FD' // light
       }
+    },
+    container: {
+      center: true
     }
   },
   darkMode: 'class', // Enable dark mode and use 'class' to toggle it
