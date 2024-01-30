@@ -45,12 +45,14 @@ import CButton from '@/components/button/CButton.vue'
 import CInput from '@/components/form/input/CInput.vue'
 import { reactive } from 'vue'
 import { useUserStore } from '@/stores/user.js'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { userLogin } = useUserStore()
 
 const userdata = reactive({
-  username: 'metsenatadmin',
-  password: 'uF9aH1vZ3bV2kN2y'
+  username: '',
+  password: ''
 })
 
 const login = async () => {

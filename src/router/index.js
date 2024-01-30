@@ -27,26 +27,37 @@ const router = createRouter({
       path: '/application',
       name: 'application',
       component: () => import('../views/ApplicationView.vue')
+    },
+    {
+      path: '/sponsors',
+      name: 'sponsors',
+      component: () => import('../views/SponsorView.vue')
+    },
+    {
+      path: '/students',
+      name: 'students',
+      component: () => import('../views/StudentsView.vue')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
- 
-  const publicPages = ['/login']
-  const authRequired = !publicPages.includes(to.path)
+  // const publicPages = ['/login']
+  // const authRequired = !publicPages.includes(to.path)
   const loggedIn = localStorage.getItem('access_token')
-  
 
-  if (authRequired && !loggedIn)
+  if (to.name !== 'login' && !loggedIn) {
+    // window.location.reload()
     return next('/login')
-
-  if (to.name === 'login' && loggedIn)
-    return next(from.fullPath)
-
-  if (loggedIn) {
-     next('/application')
   }
+
+  if (to.name === 'login' && loggedIn) {
+    console.log('logged in')
+    return next({ name: 'home' })
+  }
+  // if (loggedIn) {
+  //   return next('/application')
+  // }
 
   return next()
 })
