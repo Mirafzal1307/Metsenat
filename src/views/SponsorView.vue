@@ -4,7 +4,6 @@
     <AdminNav />
     <div class="container mx-auto">
       <CPagination :titles="titles" :data="sponsorsList" />
-      {{ sponsorsList }}
     </div>
  
   </div>
@@ -13,10 +12,9 @@
 <script setup>
 import AdminNav from '@/components/Layout/AdminNav.vue'
 import CPagination from '@/components/pagination/CPagination.vue'
-import { getSponsorsList } from '@/service/sponsors.service';
 import { useSponsorsStore } from '@/stores/sponsors.js'
 import { storeToRefs } from 'pinia'
-import { onMounted, reactive } from 'vue';
+import {  reactive } from 'vue';
 const sponsorsStore = useSponsorsStore()
 
 const { sponsorsList } = storeToRefs(sponsorsStore)
@@ -52,7 +50,5 @@ const titles = reactive([
   }
 ])
 
-onMounted(()=> {
-  getSponsorsList(1)
-})
+
 </script>

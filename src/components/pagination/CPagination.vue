@@ -3,7 +3,7 @@
   <div id="app">
     <table id="container">
       <CTable :titles="titles" :data="data">
-        
+   
         <template #created_at>
           10-11-2022
         </template>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, computed,  } from 'vue'
+import { ref, computed, onMounted,  } from 'vue'
 import { Icon } from '@iconify/vue'
 import CTable from '../table/CTable.vue'
 import { useSponsorsStore } from '../../stores/sponsors.js'
@@ -99,5 +99,8 @@ const nextPage = () => {
   }
 }
 
+onMounted(() => {
+  getSponsorsLists(currentPage.value)
+})
 
 </script>
