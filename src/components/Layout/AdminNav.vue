@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="bg-white sticky top-0 z-20 shadow-xl shadow-gray-100">
-      <div class="flex justify-between items-center py-7 w-[1200px] mx-auto">
+      <div class="flex justify-between items-center py-7 container mx-auto">
         <LogoMetsenat />
         <div class="flex items-center gap-x-4">
           <div class="flex">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="bg-white sticky z-10 shadow-xl shadow-gray-100">
-      <div class="grid grid-cols-7 py-6 w-[1200px] mx-auto">
+      <div class="grid grid-cols-7 py-6 container mx-auto">
         <div class="col-span-3">
           <div class="pt-2">
             <ul class="flex">

@@ -6,15 +6,21 @@ import { getSponsorsList } from '@/service/sponsors.service'
 export const useSponsorsStore = defineStore('sponsors', () => {
   const loading = ref(false)
   let sponsorsList = ref([])
+  let totalItems = ref(0)
 
-  const getSponsorsLists = async () => {
+  const getSponsorsLists = async (page) => {
     try {
       loading.value = true
+      
+      const { count, results } = await getSponsorsList(page)
+       console.log(sponsorsList.value);
+      sponsorsList.value = results
+      totalItems.value = count
 
-      const data = await getSponsorsList()
-      console.log(data)
-      sponsorsList.value = data.results
-      return data
+      return {
+        count,
+        results
+      }
     } catch (e) {
       console.log(e)
       return e
@@ -23,5 +29,5 @@ export const useSponsorsStore = defineStore('sponsors', () => {
     }
   }
 
-  return { getSponsorsLists, sponsorsList }
+  return { getSponsorsLists, sponsorsList, totalItems}
 })

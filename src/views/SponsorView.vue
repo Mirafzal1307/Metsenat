@@ -1,37 +1,58 @@
+<!-- eslint-disable vue/no-v-for-template-key-on-child -->
 <template>
   <div class="bg-[#f5f5f7] h-full pb-20">
     <AdminNav />
-    <div class="w-[1200px] mx-auto">
-      <CTable :titles="titles" :data="sponsorsList" />
+    <div class="container mx-auto">
+      <CPagination :titles="titles" :data="sponsorsList" />
+      {{ sponsorsList }}
     </div>
-   
+ 
   </div>
 </template>
 
 <script setup>
 import AdminNav from '@/components/Layout/AdminNav.vue'
-import CTable from '@/components/table/CTable.vue'
+import CPagination from '@/components/pagination/CPagination.vue'
+import { getSponsorsList } from '@/service/sponsors.service';
 import { useSponsorsStore } from '@/stores/sponsors.js'
 import { storeToRefs } from 'pinia'
-import { onMounted, reactive } from 'vue'
-
-
+import { onMounted, reactive } from 'vue';
 const sponsorsStore = useSponsorsStore()
 
 const { sponsorsList } = storeToRefs(sponsorsStore)
-const { getSponsorsLists } = sponsorsStore
 
 const titles = reactive([
-  'F.I.SH.',
-  'TEL.raqami',
-  'Homiylik summasi',
-  'Sarflangan summa',
-  'Sana',
-  'Holati',
-  'Amallar'
+  {
+    title: 'F.I.SH.',
+    keys: 'full_name'
+  },
+  {
+    title: 'TEL.raqami',
+    keys: 'phone'
+  },
+  {
+    title: 'Homiylik summasi',
+    keys: 'sum'
+  },
+  {
+    title: 'Sarflangan summa',
+    keys: 'spent'
+  },
+  {
+    title: 'Sana',
+    keys: 'created_at'
+  },
+  {
+    title: 'Holati',
+    keys: 'get_status_display'
+  },
+  {
+    title: 'Amallar',
+    keys: ''
+  }
 ])
 
-onMounted(() => {
-  getSponsorsLists()
+onMounted(()=> {
+  getSponsorsList(1)
 })
 </script>

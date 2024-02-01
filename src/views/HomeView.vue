@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#f5f5f7] h-full pb-20">
     <AdminNav />
-    <div class="w-[1200px] mx-auto my-14">
+    <div class="container mx-auto my-14">
       <div class="grid grid-cols-6 gap-4">
         <div
           class="col-span-2 flex bg-white rounded-lg p-6 w-full gap-4"

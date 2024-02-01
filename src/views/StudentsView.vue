@@ -1,11 +1,9 @@
 <template>
   <div class="bg-[#f5f5f7] h-full pb-20">
     <AdminNav />
-    <div class="w-[1200px] mx-auto" >
-        <CStudentTable :titles="titles" :data="studentsList" />
-
+    <div class="container mx-auto">
+      <CStudentTable :titles="titles" :data="studentsList" />
     </div>
-   
   </div>
 </template>
 

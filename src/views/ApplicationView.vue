@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <div class="bg-[url(../assets/image/Right.svg)] bg-no-repeat bg-right">
-    <div class="container mx-auto w-[1200px] ">
+    <div class="container mx-auto  ">
       <div class="grid grid-cols-2 gap-4">
         <div class="col-span-1 pb-20">
           <h2 class="font-bold pt-10 text-5xl text-clip text-wrap">

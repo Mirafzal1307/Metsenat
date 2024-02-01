@@ -1,6 +1,6 @@
 <template>
   <div class="bg-#f5f5f700 w-full h-full">
-    <div class="max-w-[1200px] mx-auto flex justify-center mt-44">
+    <div class="container mx-auto flex justify-center mt-44">
       <div class="grid grid-cols-3 w-full">
         <div class="col-start-2">
           <div class="flex justify-center">
@@ -60,7 +60,7 @@ const login = async () => {
     username: userdata.username.trim(),
     password: userdata.password.trim()
   }
-   
+
   try {
     console.log(userCredentials);
     await userLogin(userCredentials)

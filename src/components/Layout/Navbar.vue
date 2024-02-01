@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="bg-white sticky top-0  z-10 shadow-xl shadow-gray-100">
-    <div class="flex justify-between items-center py-7  w-[1200px] mx-auto">
+    <div class="flex justify-between items-center py-7 container mx-auto">
       <LogoMetsenat />
       <div class="flex items-center gap-x-4">
         <ul class="flex gap-8">
