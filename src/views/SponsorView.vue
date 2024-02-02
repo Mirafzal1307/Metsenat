@@ -3,7 +3,12 @@
   <div class="bg-[#f5f5f7] h-full pb-20">
     <AdminNav />
     <div class="container mx-auto">
-      <CTable :titles="titles" :data="sponsorsList" :total-items="totalItems" @update-page="updatePage">
+      <CTable
+        :titles="titles"
+        :data="sponsorsList"
+        :total-items="totalItems"
+        @update-page="updatePage"
+      >
         <template #full_name="{ data }">
           <h2 class="truncate text-black text-base font-semibold whitespace-no-wrap capitalize">
             {{ data.full_name }}
@@ -11,7 +16,7 @@
         </template>
         <template #phone="{ data }">
           <pre class="text-black whitespace-no-wrap">
-            {{  data.phone}}
+            {{ data.phone }}
           
           </pre>
         </template>
@@ -36,13 +41,15 @@
         </template>
 
         <template #actions>
-          <div class="text-center" >
-            <button
+          <div class="text-center">
+            <CButton
+              bg-color="bg-transparent"
+              text-color="text-primary"
               type="button"
               class="inline-block font-bold text-2xl text-primary hover:text-gray-700 text-center"
             >
               <Icon icon="solar:eye-broken" />
-            </button>
+            </CButton>
           </div>
         </template>
       </CTable>
@@ -58,12 +65,13 @@ import { formatDate, formatNumber } from '@/utils/utils'
 import { storeToRefs } from 'pinia'
 import { onMounted, reactive } from 'vue'
 import { Icon } from '@iconify/vue'
+import CButton from '@/components/button/CButton.vue'
 
 const sponsorsStore = useSponsorsStore()
 
 const { sponsorsList, totalItems } = storeToRefs(sponsorsStore)
 
-const { getSponsorsLists} = sponsorsStore
+const { getSponsorsLists } = sponsorsStore
 
 const updatePage = (page) => {
   getSponsorsLists(page)
