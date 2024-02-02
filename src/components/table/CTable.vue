@@ -22,12 +22,11 @@
                   {{ item[header.keys] }}
                 </slot>
               </td>
-
             </tr>
           </tbody>
         </table>
       </div>
-      <CPagination :total-items="props.totalItems" />
+      <CPagination :total-items="props.totalItems" @update-page="updatePage" />
     </div>
   </div>
 </template>
@@ -50,5 +49,11 @@ const props = defineProps({
     required: true
   }
 })
+
+const emit = defineEmits(['updatePage'])
+
+function updatePage (page) {
+  emit('updatePage', page)
+}
 
 </script>

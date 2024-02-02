@@ -10,7 +10,7 @@
           v-for="pageNumber in visiblePageNumbers"
           :key="pageNumber"
           :class="{ 'border-primary text-primary ease-in duration-100 ': pageNumber === currentPage }"
-          @click="goToPage(pageNumber)"
+          @click="changePage(pageNumber)"
           class="px-3 py-1 rounded bg-white border mx-1 ease-in duration-700"
         >
           {{ pageNumber }}
@@ -24,20 +24,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { Icon } from '@iconify/vue'
-import { useSponsorsStore } from '../../stores/sponsors.js'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
 const currentRoute = router.currentRoute.value.name
 
-const sponsorsStore = useSponsorsStore()
-
-const { getSponsorsLists } = sponsorsStore
-
-// eslint-disable-next-line no-unused-vars
 const props = defineProps({
   totalItems: {
     type: Number,
@@ -46,38 +39,37 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['updatePage'])
+
 let currentPage = ref(1)
 let perPage = ref(10)
 const maxVisiblePages = 6
-
 const totalPages = computed(() => Math.ceil(props.totalItems / perPage.value))
-
 const visiblePageNumbers = computed(() => {
   const startPage = Math.max(1, currentPage.value - Math.floor(maxVisiblePages / 2))
   const endPage = Math.min(totalPages.value, startPage + maxVisiblePages - 1)
   return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)
 })
 
-const goToPage = (page) => {
+const changePage = (page) => {
   currentPage.value = page
-  getSponsorsLists(currentPage.value)
+
+  emit('updatePage', currentPage.value)
 }
 
 const prevPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value--
-  }
-  getSponsorsLists(currentPage.value)
+  if(currentPage.value === 1) return
+  
+  currentPage.value--
+  emit('updatePage', currentPage.value)
 }
 
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++
   }
-  getSponsorsLists(currentPage.value)
+  emit('updatePage', currentPage.value)
 }
 
-onMounted(() => {
-  getSponsorsLists(currentPage.value)
-})
+
 </script>

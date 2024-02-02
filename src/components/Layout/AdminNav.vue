@@ -28,23 +28,18 @@
                     :class="[
                       item.border,
                       {
-                        'bg-blue-500 text-white border-2 border-primary': tab === item.id,
-                        'bg-white text-primary': tab !== item.id
+                        'bg-blue-500 text-white border-2 border-primary ease-out duration-1000 ': tab === item.id
                       }
                     ]"
                     @click="currentTab(item.id)"
-                    class="inline-block px-4 focus:outline-none w-full py-3 border-[#E0E7FF] border-2 uppercase"
+                    class="inline-block px-4 focus:outline-none w-full py-3 border-[#E0E7FF] border-2 uppercase ease-in duration-1000 "
                   >
                     {{ item.name }}
                   </button>
                 </RouterLink>
               </li>
             </ul>
-            <div class="text-center bg-white">
-              <!-- <div v-if="tab === 1">tap 1</div>
-              <div v-if="tab === 2">tab 2</div>
-              <div v-if="tab === 3">tab 3</div> -->
-            </div>
+          
           </div>
         </div>
         <div class="col-span-3 col-start-5">
@@ -73,18 +68,23 @@ import CInput from '../form/input/CInput.vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-// onMounted(() => {
-//   const router = this.$route.name
-//   console.log(router)
-// })
-const tab = ref(1)
+
+console.log(router.currentRoute.value)
+
 const pages = reactive([
-  { id: '1', name: 'Dashboard', path: '/', border: 'rounded-l' },
-  { id: '2', name: 'Homiylar', path: '/sponsors', border: 'rounded-none ' },
-  { id: '3', name: 'Talabalar', path: '/students', border: 'rounded-r' }
+  { id: 1, name: 'Dashboard', path: '/', border: 'rounded-l' },
+  { id: 2, name: 'Homiylar', path: '/sponsors', border: 'rounded-none ' },
+  { id: 3, name: 'Talabalar', path: '/students', border: 'rounded-r' }
 ])
 
-const currentTab = (tabNumber) => (tab.value = tabNumber)
+const currentPage = pages.find((page) => page.path === router.currentRoute.value.path)
+
+const tab = ref(currentPage.id)
+
+const currentTab = (tabNumber) => {
+  console.log(tabNumber)
+  tab.value = tabNumber
+}
 
 const logout = () => {
   localStorage.clear()

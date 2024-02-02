@@ -3,7 +3,7 @@
   <div class="bg-[#f5f5f7] h-full pb-20">
     <AdminNav />
     <div class="container mx-auto">
-      <CTable :titles="titles" :data="sponsorsList" :total-items="totalItems">
+      <CTable :titles="titles" :data="sponsorsList" :total-items="totalItems" @update-page="updatePage">
         <template #full_name="{ data }">
           <h2 class="truncate text-black text-base font-semibold whitespace-no-wrap capitalize">
             {{ data.full_name }}
@@ -11,7 +11,8 @@
         </template>
         <template #phone="{ data }">
           <pre class="text-black whitespace-no-wrap">
-            {{ formatDate(data.phone) }}
+            {{  data.phone}}
+          
           </pre>
         </template>
         <template #sum="{ data }">
@@ -55,12 +56,22 @@ import CTable from '@/components/table/CTable.vue'
 import { useSponsorsStore } from '@/stores/sponsors.js'
 import { formatDate, formatNumber } from '@/utils/utils'
 import { storeToRefs } from 'pinia'
-import { reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { Icon } from '@iconify/vue'
 
 const sponsorsStore = useSponsorsStore()
 
 const { sponsorsList, totalItems } = storeToRefs(sponsorsStore)
+
+const { getSponsorsLists} = sponsorsStore
+
+const updatePage = (page) => {
+  getSponsorsLists(page)
+}
+
+onMounted(() => {
+  getSponsorsLists(1)
+})
 
 const titles = reactive([
   {

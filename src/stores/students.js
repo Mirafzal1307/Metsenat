@@ -6,15 +6,16 @@ import { getStudentsList } from '@/service/students.service.js'
 export const useStudentsStore = defineStore('students', () => {
   const loading = ref(false)
   let studentsList = ref([])
+  let totalItems = ref(0)
 
-  const getStudentsLists = async () => {
+  const getStudentsLists = async (page) => {
     try {
       loading.value = true
 
-      const data = await getStudentsList()
-      console.log(data)
-      studentsList.value = data.results
-      return data
+      const { results, count } = await getStudentsList(page)
+      studentsList.value = results
+      totalItems.value = count
+      return { results, count }
     } catch (e) {
       console.log(e)
       return e
@@ -23,5 +24,5 @@ export const useStudentsStore = defineStore('students', () => {
     }
   }
 
-  return { getStudentsLists, studentsList }
+  return { getStudentsLists, studentsList, totalItems }
 })
