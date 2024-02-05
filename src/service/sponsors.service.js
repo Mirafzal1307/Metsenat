@@ -7,3 +7,9 @@ export const getSponsorsList = async (page) => {
 
   return data
 }
+
+export const getSponsorById = async (id) => {
+  const data = await get(`sponsor?id=${id}`)
+
+  return data
+}

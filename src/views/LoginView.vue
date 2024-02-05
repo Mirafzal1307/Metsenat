@@ -55,14 +55,18 @@ const userdata = reactive({
   password: ''
 })
 
+const data = [{ data: 'lalala' }, { data: 'DSDSDSD' }]
+
+
+
 const login = async () => {
-  const userCredentials =  {
+  const userCredentials = {
     username: userdata.username.trim(),
     password: userdata.password.trim()
   }
 
   try {
-    console.log(userCredentials);
+    console.log(userCredentials)
     await userLogin(userCredentials)
     await router.push('/')
   } catch (error) {

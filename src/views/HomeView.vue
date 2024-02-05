@@ -1,6 +1,5 @@
 <template>
   <div class="bg-[#f5f5f7] h-full pb-20">
-    <AdminNav />
     <div class="container mx-auto my-14">
       <div class="grid grid-cols-6 gap-4">
         <div
@@ -31,7 +30,6 @@
 
 <script setup>
 import { Icon } from '@iconify/vue'
-import AdminNav from '@/components/Layout/AdminNav.vue'
 import { reactive } from 'vue'
 
 const card = reactive([
