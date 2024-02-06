@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-gray-100 w-full h-screen bg-[url('../assets/image/viewBgImg.svg')] bg-no-repeat bg-bottom"
+    class="bg-gray-100 w-full h-screen "
   >
     <div class="bg-white sticky z-10 shadow-xl shadow-gray-100">
       <div class="py-6 container mx-auto">
@@ -11,14 +11,14 @@
                 <RouterLink to="/sponsors">
                   <Icon icon="material-symbols:arrow-back-rounded" />
                 </RouterLink>
-                {{ sponsorInfo.full_name }}
+              
               </h2>
               <span
-                v-if="sponsorInfo.is_legal"
+                
                 class="bg-green-100 text-green-500 p-1 rounded text-xs"
                 >Tasdiqlangan</span
               >
-              <span v-else class="bg-red-100 text-red-500 p-1 rounded text-xs"
+              <span class="bg-red-100 text-red-500 p-1 rounded text-xs"
                 >Tasdiqlanmagan
               </span>
             </div>
@@ -48,17 +48,18 @@
                 <Icon icon="fa-solid:user-tie" />
               </span>
             </div>
-            <h3 class="text-2xl font-bold capitalize">{{ sponsorInfo.full_name }}</h3>
+            <h3 class="text-2xl font-bold capitalize">{{ }}</h3>
           </div>
           <div class="flex w-full pt-5">
             <div class="w-full">
               <p class="uppercase text-gray-400 font-semibold text-sm pb-3">telefon raqami</p>
-              <p class="text-base font-bold">{{ formatPhoneNumber(sponsorInfo.phone) }}</p>
+              <p class="text-base font-bold">{{ }}</p>
             </div>
             <div class="w-full">
               <p class="uppercase text-gray-400 font-semibold text-sm pb-3">Homiylik summasi</p>
-              <p class="text-base font-bold">{{ sponsorInfo.sum }} UZS</p>
+              <p class="text-base font-bold">{{ }} UZS</p>
             </div>
+            {{ studentInfo }}
           </div>
         </div>
       </div>
@@ -68,19 +69,19 @@
 
 <script setup>
 import { Icon } from '@iconify/vue'
-import { useSponsorsStore } from '@/stores/sponsors.js'
 import CButton from '@/components/button/CButton.vue'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { formatPhoneNumber } from '@/utils/utils.js'
 import NavFooter from '@/components/Layout/components/NavFooter.vue'
+import { useStudentsStore } from '@/stores/students'
 
-const sponsorsStore = useSponsorsStore()
+const studentStore = useStudentsStore()
 
-const { sponsorInfo } = storeToRefs(sponsorsStore)
+const { studentInfo } = storeToRefs(studentStore)
 
-const { getSponsorInfoById } = sponsorsStore
+const { getStudentInfoById } = studentStore
 
 const router = useRouter()
 
@@ -89,6 +90,6 @@ const sponsorId = router.currentRoute.value.query.id
 console.log(sponsorId)
 
 onMounted(() => {
-  getSponsorInfoById(sponsorId)
+  getStudentInfoById(sponsorId)
 })
 </script>

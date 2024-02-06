@@ -1,13 +1,13 @@
 /* eslint-disable no-debugger */
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { getStudentsList } from '@/service/students.service.js'
+import { getStudentById, getStudentsList } from '@/service/students.service.js'
 
 export const useStudentsStore = defineStore('students', () => {
   const loading = ref(false)
   let studentsList = ref([])
   let totalItems = ref(0)
-
+  let studentInfo = ref({})
   const getStudentsLists = async (page) => {
     try {
       loading.value = true
@@ -24,5 +24,20 @@ export const useStudentsStore = defineStore('students', () => {
     }
   }
 
-  return { getStudentsLists, studentsList, totalItems }
+  const getStudentInfoById = async (id) => {
+    try {
+      loading.value = true
+
+      const data = await getStudentById(id)
+      console.log(data)
+      studentInfo.value = data
+    } catch (e) {
+      console.log(e)
+      return e
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return { getStudentsLists, getStudentInfoById, studentsList, totalItems, studentInfo }
 })

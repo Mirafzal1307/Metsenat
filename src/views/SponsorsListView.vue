@@ -42,9 +42,6 @@
   
         <template #actions="{data}">
           <div class="text-center">
-
-
-
             <RouterLink :to="{name: 'sponsor-view', query: {id: data?.id}  }">
               <CButton
                 bg-color="bg-transparent"

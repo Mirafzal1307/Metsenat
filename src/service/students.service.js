@@ -8,3 +8,9 @@ export const getStudentsList = async (page) => {
 
   return data
 }
+
+export const getStudentById = async (id) => {
+  const data = await get(`student-detail/${id}`)
+
+  return data
+}

@@ -17,9 +17,9 @@
         </div>
       </div>
     </div>
-    <div class="bg-white sticky z-10 shadow-xl shadow-gray-100">
+    <div v-if="route.meta.page !== 'view'" class="bg-white sticky z-10 shadow-xl shadow-gray-100">
       <div class="grid grid-cols-7 py-6 container mx-auto">
-        <!-- <NavDefaultFooter /> -->
+        <NavDefaultFooter/>
       </div>
     </div>
   </div>
@@ -30,11 +30,12 @@
 import LogoMetsenat from './LogoMetsenat.vue'
 import CButton from '../button/CButton.vue'
 import { Icon } from '@iconify/vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import NavDefaultFooter from './components/NavDefaultFooter.vue'
-import NavFooter from './components/NavFooter.vue'
 
 const router = useRouter()
+const route = useRoute()
+
 
 const logout = () => {
   localStorage.clear()

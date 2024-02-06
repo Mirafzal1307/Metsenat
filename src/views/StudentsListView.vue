@@ -18,7 +18,9 @@
           </pre>
         </template>
         <template #institute="{ data }">
-          <p class="text-black text-base font-semibold whitespace-no-wrap text-ellipsis overflow-hidden">
+          <p
+            class="text-black text-base font-semibold whitespace-no-wrap text-ellipsis overflow-hidden"
+          >
             {{ data.institute.name }}
           </p>
         </template>
@@ -32,14 +34,18 @@
             {{ formatNumber(data.contract) }} <span class="text-[#B2B7C1]">UZS</span>
           </p>
         </template>
-        <template #actions>
+        <template #actions="{ data }">
           <div class="text-center">
-            <button
-              type="button"
-              class="inline-block font-bold text-2xl text-primary hover:text-gray-700 text-center"
-            >
-              <Icon icon="solar:eye-broken" />
-            </button>
+            <RouterLink :to="{ name: 'student-view', query: { id: data?.id } }">
+              <CButton
+                bg-color="bg-transparent"
+                text-color="text-primary"
+                type="button"
+                class="inline-block font-bold text-2xl text-primary hover:text-gray-700 text-center"
+              >
+                <Icon icon="solar:eye-broken" />
+              </CButton>
+            </RouterLink>
           </div>
         </template>
       </CTable>
@@ -54,6 +60,7 @@ import { formatNumber } from '@/utils/utils'
 import { storeToRefs } from 'pinia'
 import { onMounted, reactive } from 'vue'
 import { Icon } from '@iconify/vue'
+import CButton from '@/components/button/CButton.vue'
 
 const studentsStore = useStudentsStore()
 

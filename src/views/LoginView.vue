@@ -55,9 +55,6 @@ const userdata = reactive({
   password: ''
 })
 
-const data = [{ data: 'lalala' }, { data: 'DSDSDSD' }]
-
-
 
 const login = async () => {
   const userCredentials = {

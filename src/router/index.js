@@ -42,8 +42,14 @@ const router = createRouter({
     {
       path: '/sponsor-view',
       name: 'sponsor-view',
-      meta: { layout: 'default' },
+      meta: { layout: 'default', page: 'view' },
       component: () => import('../views/SponsorView.vue')
+    },
+    {
+      path: '/student-view',
+      name: 'student-view',
+      meta: { layout: 'default', page: 'view' },
+      component: () => import('../views/StudentView.vue')
     }
   ]
 })
