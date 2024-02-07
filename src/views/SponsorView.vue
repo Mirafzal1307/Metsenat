@@ -8,9 +8,9 @@
           <NavFooter>
             <div class="flex items-center gap-3">
               <h2 class="flex items-center gap-3 font-bold text-2xl text-black">
-                <RouterLink to="/sponsors">
+                <div @click="$router.go(-1)" class="cursor-pointer hover:text-primary">
                   <Icon icon="material-symbols:arrow-back-rounded" />
-                </RouterLink>
+                </div>
                 {{ sponsorInfo.full_name }}
               </h2>
               <span
