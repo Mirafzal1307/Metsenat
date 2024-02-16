@@ -1,9 +1,11 @@
 <template>
   <div class="bg-[#f5f5f7] h-full pb-20">
     <div class="container mx-auto pt-10">
-      <div class="grid grid-cols-6" >
-        <div class="col-span-1 col-start-6" >
-          <CButton> <Icon icon="material-symbols:add" /> Talaba qoshish </CButton>
+      <div class="grid grid-cols-6">
+        <div class="col-span-1 col-start-6">
+          <RouterLink to="/add-student">
+            <CButton> <Icon icon="material-symbols:add" /> Talaba qoshish </CButton>
+          </RouterLink>
         </div>
       </div>
 

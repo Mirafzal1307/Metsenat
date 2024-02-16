@@ -24,6 +24,7 @@
         >
           <div class="flex justify-between w-full items-center">
             <h2 class="font-bold text-2xl">Talaba haqida</h2>
+           
             <CButton
               bg-color="bg-primaryLight"
               text-color="text-primary"
@@ -57,7 +58,7 @@
           <div class="flex w-full pt-2">
             <div class="w-full">
               <p class="uppercase text-gray-400 font-semibold text-sm pb-3">Otm</p>
-              <p class="text-base font-bold">{{ studentInfo.institute.name }}</p>
+              <p class="text-base font-bold">{{ studentInfo.institute?.name }}</p>
             </div>
             <div class="w-full">
               <p class="uppercase text-gray-400 font-semibold text-sm pb-3">Talabalik turi</p>
